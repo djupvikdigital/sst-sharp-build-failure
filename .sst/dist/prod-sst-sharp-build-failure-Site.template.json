@@ -251,7 +251,7 @@
      ]
     },
     "bucket": "cdk-hnb659fds-assets-197642523592-us-east-1",
-    "key": "02036c7157a80d98e7114e0af781744fbe1ae7ff2295feb27da5f263556aaa47.zip",
+    "key": "cf9eed7fd43f81de59bb43b1cdc10a8ca9ed6c7af711079c9721671daa15b6d1.zip",
     "replacements": []
    },
    "DependsOn": [
@@ -365,7 +365,7 @@
    "Properties": {
     "Code": {
      "S3Bucket": "cdk-hnb659fds-assets-197642523592-us-east-1",
-     "S3Key": "02036c7157a80d98e7114e0af781744fbe1ae7ff2295feb27da5f263556aaa47.zip"
+     "S3Key": "cf9eed7fd43f81de59bb43b1cdc10a8ca9ed6c7af711079c9721671daa15b6d1.zip"
     },
     "Role": {
      "Fn::GetAtt": [
@@ -806,7 +806,7 @@
     "Sources": [
      {
       "BucketName": "cdk-hnb659fds-assets-197642523592-us-east-1",
-      "ObjectKey": "948e3ae026e585fa5c977fbc92f3203cb2643d2729c19da610ee9b6291780336.zip"
+      "ObjectKey": "8cb1c1eeb14424eefb10c688c69813cce072926ee024473ae183a05e9c0c1c90.zip"
      }
     ],
     "DestinationBucketName": {
@@ -842,6 +842,14 @@
       "*",
       "--include",
       "next.svg",
+      "--cache-control",
+      "public,max-age=0,s-maxage=31536000,must-revalidate"
+     ],
+     [
+      "--exclude",
+      "*",
+      "--include",
+      "test-image.1280w-ILOOCPEJ.jpeg",
       "--cache-control",
       "public,max-age=0,s-maxage=31536000,must-revalidate"
      ],
@@ -1390,7 +1398,7 @@
       "Arn"
      ]
     },
-    "buildId": "vn7dE78s-2PjFhJ5vYdP1",
+    "buildId": "QWbUyLfBrvrd7CwLj5JR6",
     "distributionId": {
      "Ref": "siteDistribution706F5265"
     },
