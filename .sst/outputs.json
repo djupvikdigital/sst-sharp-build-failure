@@ -1,3 +1,5 @@
 {
-  "reidar-sst-sharp-build-failure-Site": {}
+  "prod-sst-sharp-build-failure-Site": {
+    "SiteUrl": "https://dxs43eath89dp.cloudfront.net"
+  }
 }

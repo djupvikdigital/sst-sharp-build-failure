@@ -1,0 +1,1655 @@
+{
+ "Resources": {
+  "CustomResourceHandlerServiceRole41AEC181": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "sst-sharp-build-failure"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "prod"
+     }
+    ]
+   }
+  },
+  "CustomResourceHandlerE8FB56BA": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-197642523592-us-east-1",
+     "S3Key": "3286487a09bf2ee4260bc31537cca833ec582dba10077de41d7aeb58de4f56fb.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomResourceHandlerServiceRole41AEC181",
+      "Arn"
+     ]
+    },
+    "Handler": "index.handler",
+    "MemorySize": 1024,
+    "Runtime": "nodejs16.x",
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "sst-sharp-build-failure"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "prod"
+     }
+    ],
+    "Timeout": 900
+   },
+   "DependsOn": [
+    "CustomResourceHandlerServiceRole41AEC181"
+   ]
+  },
+  "siteAwsCliLayer359A0EF0": {
+   "Type": "AWS::Lambda::LayerVersion",
+   "Properties": {
+    "Content": {
+     "S3Bucket": "cdk-hnb659fds-assets-197642523592-us-east-1",
+     "S3Key": "9100e1f25e3613f6f3b64a9296d685424ff6fed8f1be71e22df56e21c1c88d81.zip"
+    },
+    "Description": "/opt/awscli/aws"
+   }
+  },
+  "siteS3Bucket2B2851F3": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "PublicAccessBlockConfiguration": {
+     "BlockPublicAcls": true,
+     "BlockPublicPolicy": true,
+     "IgnorePublicAcls": true,
+     "RestrictPublicBuckets": true
+    },
+    "Tags": [
+     {
+      "Key": "aws-cdk:auto-delete-objects",
+      "Value": "true"
+     },
+     {
+      "Key": "sst:app",
+      "Value": "sst-sharp-build-failure"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "prod"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "siteS3BucketPolicyBB4DF05F": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "siteS3Bucket2B2851F3"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::GetAtt": [
+          "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+          "Arn"
+         ]
+        }
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "siteS3Bucket2B2851F3",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "siteS3Bucket2B2851F3",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "s3:GetObject",
+       "Effect": "Allow",
+       "Principal": {
+        "CanonicalUser": {
+         "Fn::GetAtt": [
+          "siteDistributionOrigin2S3Origin49B86EE9",
+          "S3CanonicalUserId"
+         ]
+        }
+       },
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Fn::GetAtt": [
+            "siteS3Bucket2B2851F3",
+            "Arn"
+           ]
+          },
+          "/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   }
+  },
+  "siteS3BucketAutoDeleteObjectsCustomResource3E10A2DE": {
+   "Type": "Custom::S3AutoDeleteObjects",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+      "Arn"
+     ]
+    },
+    "BucketName": {
+     "Ref": "siteS3Bucket2B2851F3"
+    }
+   },
+   "DependsOn": [
+    "siteS3BucketPolicyBB4DF05F"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "siteServerFunctionAssetReplacerPolicy304BF125": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":s3:::cdk-hnb659fds-assets-197642523592-us-east-1/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "siteServerFunctionAssetReplacerPolicy304BF125",
+    "Roles": [
+     {
+      "Ref": "CustomResourceHandlerServiceRole41AEC181"
+     }
+    ]
+   }
+  },
+  "siteServerFunctionAssetReplacer9A11D516": {
+   "Type": "Custom::AssetReplacer",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomResourceHandlerE8FB56BA",
+      "Arn"
+     ]
+    },
+    "bucket": "cdk-hnb659fds-assets-197642523592-us-east-1",
+    "key": "c0932fb63ddf4c27102a4cd0cae07932876973a293bef4ab13a860c48050a9d2.zip",
+    "replacements": []
+   },
+   "DependsOn": [
+    "siteServerFunctionAssetReplacerPolicy304BF125"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "siteServerFunctionServiceRole8328A688": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "sst-sharp-build-failure"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "prod"
+     }
+    ]
+   },
+   "DependsOn": [
+    "siteServerFunctionAssetReplacer9A11D516"
+   ]
+  },
+  "siteServerFunctionServiceRoleDefaultPolicy6EA49472": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "siteS3Bucket2B2851F3",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "siteS3Bucket2B2851F3",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "siteServerFunctionServiceRoleDefaultPolicy6EA49472",
+    "Roles": [
+     {
+      "Ref": "siteServerFunctionServiceRole8328A688"
+     }
+    ]
+   },
+   "DependsOn": [
+    "siteServerFunctionAssetReplacer9A11D516"
+   ]
+  },
+  "siteServerFunction6DFA6F1B": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-197642523592-us-east-1",
+     "S3Key": "c0932fb63ddf4c27102a4cd0cae07932876973a293bef4ab13a860c48050a9d2.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "siteServerFunctionServiceRole8328A688",
+      "Arn"
+     ]
+    },
+    "Architectures": [
+     "arm64"
+    ],
+    "Description": "Server handler for Next.js",
+    "Environment": {
+     "Variables": {
+      "SST_APP": "sst-sharp-build-failure",
+      "SST_STAGE": "prod",
+      "SST_SSM_PREFIX": "/sst/sst-sharp-build-failure/prod/"
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 1024,
+    "Runtime": "nodejs18.x",
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "sst-sharp-build-failure"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "prod"
+     }
+    ],
+    "Timeout": 10
+   },
+   "DependsOn": [
+    "siteServerFunctionAssetReplacer9A11D516",
+    "siteServerFunctionServiceRoleDefaultPolicy6EA49472",
+    "siteServerFunctionServiceRole8328A688"
+   ]
+  },
+  "siteServerFunctionLogRetention7123678D": {
+   "Type": "Custom::LogRetention",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+      "Arn"
+     ]
+    },
+    "LogGroupName": {
+     "Fn::Join": [
+      "",
+      [
+       "/aws/lambda/",
+       {
+        "Ref": "siteServerFunction6DFA6F1B"
+       }
+      ]
+     ]
+    },
+    "RetentionInDays": 3
+   },
+   "DependsOn": [
+    "siteServerFunctionAssetReplacer9A11D516"
+   ]
+  },
+  "siteServerFunctionFunctionUrl1B09C490": {
+   "Type": "AWS::Lambda::Url",
+   "Properties": {
+    "AuthType": "NONE",
+    "TargetFunctionArn": {
+     "Fn::GetAtt": [
+      "siteServerFunction6DFA6F1B",
+      "Arn"
+     ]
+    }
+   },
+   "DependsOn": [
+    "siteServerFunctionAssetReplacer9A11D516"
+   ]
+  },
+  "siteServerFunctioninvokefunctionurlEABB57E1": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunctionUrl",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "siteServerFunction6DFA6F1B",
+      "Arn"
+     ]
+    },
+    "Principal": "*",
+    "FunctionUrlAuthType": "NONE"
+   },
+   "DependsOn": [
+    "siteServerFunctionAssetReplacer9A11D516"
+   ]
+  },
+  "siteS3UploaderServiceRole973F5A0B": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "sst-sharp-build-failure"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "prod"
+     }
+    ]
+   }
+  },
+  "siteS3UploaderServiceRoleDefaultPolicy8BA893D3": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "siteS3Bucket2B2851F3",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "siteS3Bucket2B2851F3",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":s3:::cdk-hnb659fds-assets-197642523592-us-east-1"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":s3:::cdk-hnb659fds-assets-197642523592-us-east-1/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "siteS3UploaderServiceRoleDefaultPolicy8BA893D3",
+    "Roles": [
+     {
+      "Ref": "siteS3UploaderServiceRole973F5A0B"
+     }
+    ]
+   }
+  },
+  "siteS3Uploader2837C218": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-197642523592-us-east-1",
+     "S3Key": "5314dd0b83a9c16d227872e4b881e96d2361ae01b02d8bdc3b24c30fd31aa758.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "siteS3UploaderServiceRole973F5A0B",
+      "Arn"
+     ]
+    },
+    "Handler": "s3-upload.handler",
+    "Layers": [
+     {
+      "Ref": "siteAwsCliLayer359A0EF0"
+     }
+    ],
+    "MemorySize": 1024,
+    "Runtime": "python3.7",
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "sst-sharp-build-failure"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "prod"
+     }
+    ],
+    "Timeout": 900
+   },
+   "DependsOn": [
+    "siteS3UploaderServiceRoleDefaultPolicy8BA893D3",
+    "siteS3UploaderServiceRole973F5A0B"
+   ]
+  },
+  "siteS3HandlerServiceRole6D2CC8E3": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "sst-sharp-build-failure"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "prod"
+     }
+    ]
+   }
+  },
+  "siteS3HandlerServiceRoleDefaultPolicy1BD27252": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:DeleteObject*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging",
+        "s3:Abort*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "siteS3Bucket2B2851F3",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "siteS3Bucket2B2851F3",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "siteS3Uploader2837C218",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "siteS3Uploader2837C218",
+             "Arn"
+            ]
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "siteS3HandlerServiceRoleDefaultPolicy1BD27252",
+    "Roles": [
+     {
+      "Ref": "siteS3HandlerServiceRole6D2CC8E3"
+     }
+    ]
+   }
+  },
+  "siteS3Handler84D19388": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-197642523592-us-east-1",
+     "S3Key": "5314dd0b83a9c16d227872e4b881e96d2361ae01b02d8bdc3b24c30fd31aa758.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "siteS3HandlerServiceRole6D2CC8E3",
+      "Arn"
+     ]
+    },
+    "Environment": {
+     "Variables": {
+      "UPLOADER_FUNCTION_NAME": {
+       "Ref": "siteS3Uploader2837C218"
+      }
+     }
+    },
+    "Handler": "s3-handler.handler",
+    "Layers": [
+     {
+      "Ref": "siteAwsCliLayer359A0EF0"
+     }
+    ],
+    "MemorySize": 1024,
+    "Runtime": "python3.7",
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "sst-sharp-build-failure"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "prod"
+     }
+    ],
+    "Timeout": 900
+   },
+   "DependsOn": [
+    "siteS3HandlerServiceRoleDefaultPolicy1BD27252",
+    "siteS3HandlerServiceRole6D2CC8E3"
+   ]
+  },
+  "siteS3DeploymentB932FFDB": {
+   "Type": "Custom::SSTBucketDeployment",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "siteS3Handler84D19388",
+      "Arn"
+     ]
+    },
+    "Sources": [
+     {
+      "BucketName": "cdk-hnb659fds-assets-197642523592-us-east-1",
+      "ObjectKey": "183f174352db482f8d5cb4943d1190565957d746d77216ac4472a6389b92ec5c.zip"
+     }
+    ],
+    "DestinationBucketName": {
+     "Ref": "siteS3Bucket2B2851F3"
+    },
+    "FileOptions": [
+     [
+      "--exclude",
+      "*",
+      "--include",
+      "BUILD_ID",
+      "--cache-control",
+      "public,max-age=0,s-maxage=31536000,must-revalidate"
+     ],
+     [
+      "--exclude",
+      "*",
+      "--include",
+      "_next/*",
+      "--cache-control",
+      "public,max-age=31536000,immutable"
+     ],
+     [
+      "--exclude",
+      "*",
+      "--include",
+      "favicon.ico",
+      "--cache-control",
+      "public,max-age=0,s-maxage=31536000,must-revalidate"
+     ],
+     [
+      "--exclude",
+      "*",
+      "--include",
+      "next.svg",
+      "--cache-control",
+      "public,max-age=0,s-maxage=31536000,must-revalidate"
+     ],
+     [
+      "--exclude",
+      "*",
+      "--include",
+      "vercel.svg",
+      "--cache-control",
+      "public,max-age=0,s-maxage=31536000,must-revalidate"
+     ]
+    ],
+    "ReplaceValues": []
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "siteServerCacheDD54ACDF": {
+   "Type": "AWS::CloudFront::CachePolicy",
+   "Properties": {
+    "CachePolicyConfig": {
+     "Comment": "SST server response cache policy",
+     "DefaultTTL": 0,
+     "MaxTTL": 31536000,
+     "MinTTL": 0,
+     "Name": "prodsstsharpbuildfailureSitesiteServerCache6B3FB918-us-east-1",
+     "ParametersInCacheKeyAndForwardedToOrigin": {
+      "CookiesConfig": {
+       "CookieBehavior": "all"
+      },
+      "EnableAcceptEncodingBrotli": true,
+      "EnableAcceptEncodingGzip": true,
+      "HeadersConfig": {
+       "HeaderBehavior": "none"
+      },
+      "QueryStringsConfig": {
+       "QueryStringBehavior": "all"
+      }
+     }
+    }
+   }
+  },
+  "siteImageFunctionServiceRoleAD5B95E2": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "sst-sharp-build-failure"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "prod"
+     }
+    ]
+   }
+  },
+  "siteImageFunctionServiceRoleDefaultPolicy39F33332": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "s3:GetObject",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Fn::GetAtt": [
+            "siteS3Bucket2B2851F3",
+            "Arn"
+           ]
+          },
+          "/*"
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "siteImageFunctionServiceRoleDefaultPolicy39F33332",
+    "Roles": [
+     {
+      "Ref": "siteImageFunctionServiceRoleAD5B95E2"
+     }
+    ]
+   }
+  },
+  "siteImageFunctionD6B403E9": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-197642523592-us-east-1",
+     "S3Key": "c905a56a09ffb2b1be498a5f6b612be6969839d63134c1c7a8bdaaa278d4db78.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "siteImageFunctionServiceRoleAD5B95E2",
+      "Arn"
+     ]
+    },
+    "Architectures": [
+     "arm64"
+    ],
+    "Description": "Image optimization handler for Next.js",
+    "Environment": {
+     "Variables": {
+      "BUCKET_NAME": {
+       "Ref": "siteS3Bucket2B2851F3"
+      }
+     }
+    },
+    "Handler": "index.handler",
+    "MemorySize": 1536,
+    "Runtime": "nodejs18.x",
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "sst-sharp-build-failure"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "prod"
+     }
+    ],
+    "Timeout": 25
+   },
+   "DependsOn": [
+    "siteImageFunctionServiceRoleDefaultPolicy39F33332",
+    "siteImageFunctionServiceRoleAD5B95E2"
+   ]
+  },
+  "siteImageFunctionLogRetentionD1B5BECE": {
+   "Type": "Custom::LogRetention",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+      "Arn"
+     ]
+    },
+    "LogGroupName": {
+     "Fn::Join": [
+      "",
+      [
+       "/aws/lambda/",
+       {
+        "Ref": "siteImageFunctionD6B403E9"
+       }
+      ]
+     ]
+    },
+    "RetentionInDays": 3
+   }
+  },
+  "siteImageFunctionFunctionUrl110B87E7": {
+   "Type": "AWS::Lambda::Url",
+   "Properties": {
+    "AuthType": "NONE",
+    "TargetFunctionArn": {
+     "Fn::GetAtt": [
+      "siteImageFunctionD6B403E9",
+      "Arn"
+     ]
+    }
+   }
+  },
+  "siteImageFunctioninvokefunctionurl443403A1": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunctionUrl",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "siteImageFunctionD6B403E9",
+      "Arn"
+     ]
+    },
+    "Principal": "*",
+    "FunctionUrlAuthType": "NONE"
+   }
+  },
+  "siteDistributionOrigin2S3Origin49B86EE9": {
+   "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
+   "Properties": {
+    "CloudFrontOriginAccessIdentityConfig": {
+     "Comment": "Identity for prodsstsharpbuildfailureSitesiteDistributionOrigin2B1A782A7"
+    }
+   },
+   "DependsOn": [
+    "siteS3DeploymentB932FFDB"
+   ]
+  },
+  "siteDistribution706F5265": {
+   "Type": "AWS::CloudFront::Distribution",
+   "Properties": {
+    "DistributionConfig": {
+     "Aliases": [],
+     "CacheBehaviors": [
+      {
+       "AllowedMethods": [
+        "GET",
+        "HEAD",
+        "OPTIONS",
+        "PUT",
+        "PATCH",
+        "POST",
+        "DELETE"
+       ],
+       "CachePolicyId": {
+        "Ref": "siteServerCacheDD54ACDF"
+       },
+       "CachedMethods": [
+        "GET",
+        "HEAD",
+        "OPTIONS"
+       ],
+       "Compress": true,
+       "OriginRequestPolicyId": "b689b0a8-53d0-40ab-baf2-68738e2966ac",
+       "PathPattern": "api/*",
+       "TargetOriginId": "prodsstsharpbuildfailureSitesiteDistributionOrigin3970C76D1",
+       "ViewerProtocolPolicy": "redirect-to-https"
+      },
+      {
+       "AllowedMethods": [
+        "GET",
+        "HEAD",
+        "OPTIONS",
+        "PUT",
+        "PATCH",
+        "POST",
+        "DELETE"
+       ],
+       "CachePolicyId": {
+        "Ref": "siteServerCacheDD54ACDF"
+       },
+       "CachedMethods": [
+        "GET",
+        "HEAD",
+        "OPTIONS"
+       ],
+       "Compress": true,
+       "OriginRequestPolicyId": "b689b0a8-53d0-40ab-baf2-68738e2966ac",
+       "PathPattern": "_next/data/*",
+       "TargetOriginId": "prodsstsharpbuildfailureSitesiteDistributionOrigin3970C76D1",
+       "ViewerProtocolPolicy": "redirect-to-https"
+      },
+      {
+       "AllowedMethods": [
+        "GET",
+        "HEAD",
+        "OPTIONS",
+        "PUT",
+        "PATCH",
+        "POST",
+        "DELETE"
+       ],
+       "CachePolicyId": {
+        "Ref": "siteServerCacheDD54ACDF"
+       },
+       "CachedMethods": [
+        "GET",
+        "HEAD",
+        "OPTIONS"
+       ],
+       "Compress": true,
+       "PathPattern": "_next/image*",
+       "TargetOriginId": "prodsstsharpbuildfailureSitesiteDistributionOrigin4BD73D1E1",
+       "ViewerProtocolPolicy": "redirect-to-https"
+      },
+      {
+       "AllowedMethods": [
+        "GET",
+        "HEAD",
+        "OPTIONS"
+       ],
+       "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+       "CachedMethods": [
+        "GET",
+        "HEAD",
+        "OPTIONS"
+       ],
+       "Compress": true,
+       "PathPattern": "_next/*",
+       "TargetOriginId": "prodsstsharpbuildfailureSitesiteDistributionOrigin2B1A782A7",
+       "ViewerProtocolPolicy": "redirect-to-https"
+      }
+     ],
+     "DefaultCacheBehavior": {
+      "CachePolicyId": {
+       "Ref": "siteServerCacheDD54ACDF"
+      },
+      "Compress": true,
+      "OriginRequestPolicyId": "b689b0a8-53d0-40ab-baf2-68738e2966ac",
+      "TargetOriginId": "prodsstsharpbuildfailureSitesiteDistributionOriginGroup1EB13FBF8",
+      "ViewerProtocolPolicy": "redirect-to-https"
+     },
+     "DefaultRootObject": "",
+     "Enabled": true,
+     "HttpVersion": "http2",
+     "IPV6Enabled": true,
+     "OriginGroups": {
+      "Items": [
+       {
+        "FailoverCriteria": {
+         "StatusCodes": {
+          "Items": [
+           503
+          ],
+          "Quantity": 1
+         }
+        },
+        "Id": "prodsstsharpbuildfailureSitesiteDistributionOriginGroup1EB13FBF8",
+        "Members": {
+         "Items": [
+          {
+           "OriginId": "prodsstsharpbuildfailureSitesiteDistributionOrigin12AD32B40"
+          },
+          {
+           "OriginId": "prodsstsharpbuildfailureSitesiteDistributionOrigin2B1A782A7"
+          }
+         ],
+         "Quantity": 2
+        }
+       }
+      ],
+      "Quantity": 1
+     },
+     "Origins": [
+      {
+       "CustomOriginConfig": {
+        "OriginProtocolPolicy": "https-only",
+        "OriginSSLProtocols": [
+         "TLSv1.2"
+        ]
+       },
+       "DomainName": {
+        "Fn::Select": [
+         0,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             1,
+             {
+              "Fn::Split": [
+               "//",
+               {
+                "Fn::GetAtt": [
+                 "siteServerFunctionFunctionUrl1B09C490",
+                 "FunctionUrl"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "Id": "prodsstsharpbuildfailureSitesiteDistributionOrigin12AD32B40"
+      },
+      {
+       "DomainName": {
+        "Fn::GetAtt": [
+         "siteS3Bucket2B2851F3",
+         "RegionalDomainName"
+        ]
+       },
+       "Id": "prodsstsharpbuildfailureSitesiteDistributionOrigin2B1A782A7",
+       "S3OriginConfig": {
+        "OriginAccessIdentity": {
+         "Fn::Join": [
+          "",
+          [
+           "origin-access-identity/cloudfront/",
+           {
+            "Ref": "siteDistributionOrigin2S3Origin49B86EE9"
+           }
+          ]
+         ]
+        }
+       }
+      },
+      {
+       "CustomOriginConfig": {
+        "OriginProtocolPolicy": "https-only",
+        "OriginSSLProtocols": [
+         "TLSv1.2"
+        ]
+       },
+       "DomainName": {
+        "Fn::Select": [
+         0,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             1,
+             {
+              "Fn::Split": [
+               "//",
+               {
+                "Fn::GetAtt": [
+                 "siteServerFunctionFunctionUrl1B09C490",
+                 "FunctionUrl"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "Id": "prodsstsharpbuildfailureSitesiteDistributionOrigin3970C76D1"
+      },
+      {
+       "CustomOriginConfig": {
+        "OriginProtocolPolicy": "https-only",
+        "OriginSSLProtocols": [
+         "TLSv1.2"
+        ]
+       },
+       "DomainName": {
+        "Fn::Select": [
+         0,
+         {
+          "Fn::Split": [
+           "/",
+           {
+            "Fn::Select": [
+             1,
+             {
+              "Fn::Split": [
+               "//",
+               {
+                "Fn::GetAtt": [
+                 "siteImageFunctionFunctionUrl110B87E7",
+                 "FunctionUrl"
+                ]
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "Id": "prodsstsharpbuildfailureSitesiteDistributionOrigin4BD73D1E1"
+      }
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "sst-sharp-build-failure"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "prod"
+     }
+    ]
+   },
+   "DependsOn": [
+    "siteS3DeploymentB932FFDB"
+   ]
+  },
+  "siteCloudFrontInvalidatorPolicyEE18C654": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "cloudfront:GetInvalidation",
+        "cloudfront:CreateInvalidation"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":cloudfront::197642523592:distribution/",
+          {
+           "Ref": "siteDistribution706F5265"
+          }
+         ]
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "siteCloudFrontInvalidatorPolicyEE18C654",
+    "Roles": [
+     {
+      "Ref": "CustomResourceHandlerServiceRole41AEC181"
+     }
+    ]
+   }
+  },
+  "siteCloudFrontInvalidator18BEA866": {
+   "Type": "Custom::CloudFrontInvalidator",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomResourceHandlerE8FB56BA",
+      "Arn"
+     ]
+    },
+    "buildId": "wr_1ULNSaCYjtzbpjpkQH",
+    "distributionId": {
+     "Ref": "siteDistribution706F5265"
+    },
+    "paths": [
+     "/*"
+    ],
+    "waitForInvalidation": false
+   },
+   "DependsOn": [
+    "siteCloudFrontInvalidatorPolicyEE18C654"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete"
+  },
+  "siteParameterurl3D1716BC": {
+   "Type": "AWS::SSM::Parameter",
+   "Properties": {
+    "Type": "String",
+    "Value": {
+     "Fn::Join": [
+      "",
+      [
+       "https://",
+       {
+        "Fn::GetAtt": [
+         "siteDistribution706F5265",
+         "DomainName"
+        ]
+       }
+      ]
+     ]
+    },
+    "Name": "/sst/sst-sharp-build-failure/prod/NextjsSite/site/url",
+    "Tags": {
+     "sst:app": "sst-sharp-build-failure",
+     "sst:stage": "prod"
+    }
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ]
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-197642523592-us-east-1",
+     "S3Key": "350185a1069fa20a23a583e20c77f6844218bd73097902362dc94f1a108f5d89.zip"
+    },
+    "Timeout": 900,
+    "MemorySize": 128,
+    "Handler": "__entrypoint__.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs14.x",
+    "Description": {
+     "Fn::Join": [
+      "",
+      [
+       "Lambda function for auto-deleting objects in ",
+       {
+        "Ref": "siteS3Bucket2B2851F3"
+       },
+       " S3 bucket."
+      ]
+     ]
+    }
+   },
+   "DependsOn": [
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+   ]
+  },
+  "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ],
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "sst-sharp-build-failure"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "prod"
+     }
+    ]
+   }
+  },
+  "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "logs:PutRetentionPolicy",
+        "logs:DeleteRetentionPolicy"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+    "Roles": [
+     {
+      "Ref": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB"
+     }
+    ]
+   }
+  },
+  "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Handler": "index.handler",
+    "Runtime": "nodejs14.x",
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-197642523592-us-east-1",
+     "S3Key": "5fa1330271b8967d9254ba2d4a07144f8acefe8b77e6d6bba38261373a50d5f8.zip"
+    },
+    "Role": {
+     "Fn::GetAtt": [
+      "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+      "Arn"
+     ]
+    },
+    "Tags": [
+     {
+      "Key": "sst:app",
+      "Value": "sst-sharp-build-failure"
+     },
+     {
+      "Key": "sst:stage",
+      "Value": "prod"
+     }
+    ]
+   },
+   "DependsOn": [
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB"
+   ]
+  }
+ },
+ "Outputs": {
+  "SiteUrl": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Fn::GetAtt": [
+        "siteDistribution706F5265",
+        "DomainName"
+       ]
+      }
+     ]
+    ]
+   }
+  },
+  "SSTMetadata": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "{\"app\":\"sst-sharp-build-failure\",\"stage\":\"prod\",\"version\":\"2.5.7\",\"metadata\":[{\"id\":\"site\",\"addr\":\"c802b7d8085b54eb26f66c1ee700e91513ed5ab8d2\",\"stack\":\"prod-sst-sharp-build-failure-Site\",\"type\":\"NextjsSite\",\"data\":{\"mode\":\"deployed\",\"path\":\".\",\"server\":\"",
+      {
+       "Fn::GetAtt": [
+        "siteServerFunction6DFA6F1B",
+        "Arn"
+       ]
+      },
+      "\",\"secrets\":[]}}]}"
+     ]
+    ]
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

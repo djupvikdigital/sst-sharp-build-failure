@@ -1,0 +1,27 @@
+{
+  "name": "sst-sharp-build-failure",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "sst bind next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@types/node": "18.15.13",
+    "@types/react": "18.0.37",
+    "@types/react-dom": "18.0.11",
+    "eslint": "8.38.0",
+    "eslint-config-next": "13.3.0",
+    "next": "13.3.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "typescript": "5.0.4"
+  },
+  "devDependencies": {
+    "sst": "^2.5.7",
+    "aws-cdk-lib": "2.72.1",
+    "constructs": "10.1.156"
+  }
+}

@@ -4,21 +4,21 @@
     "id": "App",
     "path": "",
     "children": {
-      "reidar-sst-sharp-build-failure-Site": {
-        "id": "reidar-sst-sharp-build-failure-Site",
-        "path": "reidar-sst-sharp-build-failure-Site",
+      "prod-sst-sharp-build-failure-Site": {
+        "id": "prod-sst-sharp-build-failure-Site",
+        "path": "prod-sst-sharp-build-failure-Site",
         "children": {
           "CustomResourceHandler": {
             "id": "CustomResourceHandler",
-            "path": "reidar-sst-sharp-build-failure-Site/CustomResourceHandler",
+            "path": "prod-sst-sharp-build-failure-Site/CustomResourceHandler",
             "children": {
               "ServiceRole": {
                 "id": "ServiceRole",
-                "path": "reidar-sst-sharp-build-failure-Site/CustomResourceHandler/ServiceRole",
+                "path": "prod-sst-sharp-build-failure-Site/CustomResourceHandler/ServiceRole",
                 "children": {
                   "ImportServiceRole": {
                     "id": "ImportServiceRole",
-                    "path": "reidar-sst-sharp-build-failure-Site/CustomResourceHandler/ServiceRole/ImportServiceRole",
+                    "path": "prod-sst-sharp-build-failure-Site/CustomResourceHandler/ServiceRole/ImportServiceRole",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.Resource",
                       "version": "2.72.1"
@@ -26,7 +26,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "reidar-sst-sharp-build-failure-Site/CustomResourceHandler/ServiceRole/Resource",
+                    "path": "prod-sst-sharp-build-failure-Site/CustomResourceHandler/ServiceRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -63,7 +63,7 @@
                           },
                           {
                             "key": "sst:stage",
-                            "value": "reidar"
+                            "value": "prod"
                           }
                         ]
                       }
@@ -81,11 +81,11 @@
               },
               "Code": {
                 "id": "Code",
-                "path": "reidar-sst-sharp-build-failure-Site/CustomResourceHandler/Code",
+                "path": "prod-sst-sharp-build-failure-Site/CustomResourceHandler/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "reidar-sst-sharp-build-failure-Site/CustomResourceHandler/Code/Stage",
+                    "path": "prod-sst-sharp-build-failure-Site/CustomResourceHandler/Code/Stage",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.AssetStaging",
                       "version": "2.72.1"
@@ -93,7 +93,7 @@
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "reidar-sst-sharp-build-failure-Site/CustomResourceHandler/Code/AssetBucket",
+                    "path": "prod-sst-sharp-build-failure-Site/CustomResourceHandler/Code/AssetBucket",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.aws_s3.BucketBase",
                       "version": "2.72.1"
@@ -107,13 +107,13 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "reidar-sst-sharp-build-failure-Site/CustomResourceHandler/Resource",
+                "path": "prod-sst-sharp-build-failure-Site/CustomResourceHandler/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                   "aws:cdk:cloudformation:props": {
                     "code": {
                       "s3Bucket": "cdk-hnb659fds-assets-197642523592-us-east-1",
-                      "s3Key": "816b7c3c6f0e58d78a694be3f23bfa7af1ac7abc79c12a89f050c4f8b883f0bb.zip"
+                      "s3Key": "3286487a09bf2ee4260bc31537cca833ec582dba10077de41d7aeb58de4f56fb.zip"
                     },
                     "role": {
                       "Fn::GetAtt": [
@@ -131,7 +131,7 @@
                       },
                       {
                         "key": "sst:stage",
-                        "value": "reidar"
+                        "value": "prod"
                       }
                     ],
                     "timeout": 900
@@ -150,15 +150,2032 @@
           },
           "site": {
             "id": "site",
-            "path": "reidar-sst-sharp-build-failure-Site/site",
+            "path": "prod-sst-sharp-build-failure-Site/site",
             "children": {
-              "ServerFunctionRole": {
-                "id": "ServerFunctionRole",
-                "path": "reidar-sst-sharp-build-failure-Site/site/ServerFunctionRole",
+              "AwsCliLayer": {
+                "id": "AwsCliLayer",
+                "path": "prod-sst-sharp-build-failure-Site/site/AwsCliLayer",
                 "children": {
-                  "ImportServerFunctionRole": {
-                    "id": "ImportServerFunctionRole",
-                    "path": "reidar-sst-sharp-build-failure-Site/site/ServerFunctionRole/ImportServerFunctionRole",
+                  "Code": {
+                    "id": "Code",
+                    "path": "prod-sst-sharp-build-failure-Site/site/AwsCliLayer/Code",
+                    "children": {
+                      "Stage": {
+                        "id": "Stage",
+                        "path": "prod-sst-sharp-build-failure-Site/site/AwsCliLayer/Code/Stage",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.72.1"
+                        }
+                      },
+                      "AssetBucket": {
+                        "id": "AssetBucket",
+                        "path": "prod-sst-sharp-build-failure-Site/site/AwsCliLayer/Code/AssetBucket",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                          "version": "2.72.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                      "version": "2.72.1"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "prod-sst-sharp-build-failure-Site/site/AwsCliLayer/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::LayerVersion",
+                      "aws:cdk:cloudformation:props": {
+                        "content": {
+                          "s3Bucket": "cdk-hnb659fds-assets-197642523592-us-east-1",
+                          "s3Key": "9100e1f25e3613f6f3b64a9296d685424ff6fed8f1be71e22df56e21c1c88d81.zip"
+                        },
+                        "description": "/opt/awscli/aws"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.CfnLayerVersion",
+                      "version": "2.72.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.lambda_layer_awscli.AwsCliLayer",
+                  "version": "2.72.1"
+                }
+              },
+              "S3Bucket": {
+                "id": "S3Bucket",
+                "path": "prod-sst-sharp-build-failure-Site/site/S3Bucket",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "prod-sst-sharp-build-failure-Site/site/S3Bucket/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                      "aws:cdk:cloudformation:props": {
+                        "publicAccessBlockConfiguration": {
+                          "blockPublicAcls": true,
+                          "blockPublicPolicy": true,
+                          "ignorePublicAcls": true,
+                          "restrictPublicBuckets": true
+                        },
+                        "tags": [
+                          {
+                            "key": "aws-cdk:auto-delete-objects",
+                            "value": "true"
+                          },
+                          {
+                            "key": "sst:app",
+                            "value": "sst-sharp-build-failure"
+                          },
+                          {
+                            "key": "sst:stage",
+                            "value": "prod"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.CfnBucket",
+                      "version": "2.72.1"
+                    }
+                  },
+                  "Policy": {
+                    "id": "Policy",
+                    "path": "prod-sst-sharp-build-failure-Site/site/S3Bucket/Policy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "prod-sst-sharp-build-failure-Site/site/S3Bucket/Policy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::S3::BucketPolicy",
+                          "aws:cdk:cloudformation:props": {
+                            "bucket": {
+                              "Ref": "siteS3Bucket2B2851F3"
+                            },
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "s3:GetBucket*",
+                                    "s3:List*",
+                                    "s3:DeleteObject*"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "AWS": {
+                                      "Fn::GetAtt": [
+                                        "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                                        "Arn"
+                                      ]
+                                    }
+                                  },
+                                  "Resource": [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "siteS3Bucket2B2851F3",
+                                        "Arn"
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Fn::GetAtt": [
+                                              "siteS3Bucket2B2851F3",
+                                              "Arn"
+                                            ]
+                                          },
+                                          "/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "Action": "s3:GetObject",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "CanonicalUser": {
+                                      "Fn::GetAtt": [
+                                        "siteDistributionOrigin2S3Origin49B86EE9",
+                                        "S3CanonicalUserId"
+                                      ]
+                                    }
+                                  },
+                                  "Resource": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        {
+                                          "Fn::GetAtt": [
+                                            "siteS3Bucket2B2851F3",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/*"
+                                      ]
+                                    ]
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.CfnBucketPolicy",
+                          "version": "2.72.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.BucketPolicy",
+                      "version": "2.72.1"
+                    }
+                  },
+                  "AutoDeleteObjectsCustomResource": {
+                    "id": "AutoDeleteObjectsCustomResource",
+                    "path": "prod-sst-sharp-build-failure-Site/site/S3Bucket/AutoDeleteObjectsCustomResource",
+                    "children": {
+                      "Default": {
+                        "id": "Default",
+                        "path": "prod-sst-sharp-build-failure-Site/site/S3Bucket/AutoDeleteObjectsCustomResource/Default",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnResource",
+                          "version": "2.72.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CustomResource",
+                      "version": "2.72.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3.Bucket",
+                  "version": "2.72.1"
+                }
+              },
+              "ServerFunction": {
+                "id": "ServerFunction",
+                "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction",
+                "children": {
+                  "Asset": {
+                    "id": "Asset",
+                    "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/Asset",
+                    "children": {
+                      "Stage": {
+                        "id": "Stage",
+                        "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/Asset/Stage",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.72.1"
+                        }
+                      },
+                      "AssetBucket": {
+                        "id": "AssetBucket",
+                        "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/Asset/AssetBucket",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                          "version": "2.72.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                      "version": "2.72.1"
+                    }
+                  },
+                  "AssetReplacerPolicy": {
+                    "id": "AssetReplacerPolicy",
+                    "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/AssetReplacerPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/AssetReplacerPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "s3:GetObject",
+                                    "s3:PutObject"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        "arn:",
+                                        {
+                                          "Ref": "AWS::Partition"
+                                        },
+                                        ":s3:::cdk-hnb659fds-assets-197642523592-us-east-1/*"
+                                      ]
+                                    ]
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "siteServerFunctionAssetReplacerPolicy304BF125",
+                            "roles": [
+                              {
+                                "Ref": "CustomResourceHandlerServiceRole41AEC181"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                          "version": "2.72.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Policy",
+                      "version": "2.72.1"
+                    }
+                  },
+                  "AssetReplacer": {
+                    "id": "AssetReplacer",
+                    "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/AssetReplacer",
+                    "children": {
+                      "Default": {
+                        "id": "Default",
+                        "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/AssetReplacer/Default",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnResource",
+                          "version": "2.72.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CustomResource",
+                      "version": "2.72.1"
+                    }
+                  },
+                  "ServerFunction": {
+                    "id": "ServerFunction",
+                    "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/ServerFunction",
+                    "children": {
+                      "ServiceRole": {
+                        "id": "ServiceRole",
+                        "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/ServerFunction/ServiceRole",
+                        "children": {
+                          "ImportServiceRole": {
+                            "id": "ImportServiceRole",
+                            "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/ServerFunction/ServiceRole/ImportServiceRole",
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.Resource",
+                              "version": "2.72.1"
+                            }
+                          },
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/ServerFunction/ServiceRole/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                              "aws:cdk:cloudformation:props": {
+                                "assumeRolePolicyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": "sts:AssumeRole",
+                                      "Effect": "Allow",
+                                      "Principal": {
+                                        "Service": "lambda.amazonaws.com"
+                                      }
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "managedPolicyArns": [
+                                  {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        "arn:",
+                                        {
+                                          "Ref": "AWS::Partition"
+                                        },
+                                        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                                      ]
+                                    ]
+                                  }
+                                ],
+                                "tags": [
+                                  {
+                                    "key": "sst:app",
+                                    "value": "sst-sharp-build-failure"
+                                  },
+                                  {
+                                    "key": "sst:stage",
+                                    "value": "prod"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                              "version": "2.72.1"
+                            }
+                          },
+                          "DefaultPolicy": {
+                            "id": "DefaultPolicy",
+                            "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/ServerFunction/ServiceRole/DefaultPolicy",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/ServerFunction/ServiceRole/DefaultPolicy/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                                  "aws:cdk:cloudformation:props": {
+                                    "policyDocument": {
+                                      "Statement": [
+                                        {
+                                          "Action": [
+                                            "s3:GetObject*",
+                                            "s3:GetBucket*",
+                                            "s3:List*",
+                                            "s3:DeleteObject*",
+                                            "s3:PutObject",
+                                            "s3:PutObjectLegalHold",
+                                            "s3:PutObjectRetention",
+                                            "s3:PutObjectTagging",
+                                            "s3:PutObjectVersionTagging",
+                                            "s3:Abort*"
+                                          ],
+                                          "Effect": "Allow",
+                                          "Resource": [
+                                            {
+                                              "Fn::GetAtt": [
+                                                "siteS3Bucket2B2851F3",
+                                                "Arn"
+                                              ]
+                                            },
+                                            {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  {
+                                                    "Fn::GetAtt": [
+                                                      "siteS3Bucket2B2851F3",
+                                                      "Arn"
+                                                    ]
+                                                  },
+                                                  "/*"
+                                                ]
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      "Version": "2012-10-17"
+                                    },
+                                    "policyName": "siteServerFunctionServiceRoleDefaultPolicy6EA49472",
+                                    "roles": [
+                                      {
+                                        "Ref": "siteServerFunctionServiceRole8328A688"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                                  "version": "2.72.1"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.Policy",
+                              "version": "2.72.1"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.Role",
+                          "version": "2.72.1"
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/ServerFunction/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                          "aws:cdk:cloudformation:props": {
+                            "code": {
+                              "s3Bucket": "cdk-hnb659fds-assets-197642523592-us-east-1",
+                              "s3Key": "c0932fb63ddf4c27102a4cd0cae07932876973a293bef4ab13a860c48050a9d2.zip"
+                            },
+                            "role": {
+                              "Fn::GetAtt": [
+                                "siteServerFunctionServiceRole8328A688",
+                                "Arn"
+                              ]
+                            },
+                            "architectures": [
+                              "arm64"
+                            ],
+                            "description": "Server handler for Next.js",
+                            "environment": {
+                              "variables": {
+                                "SST_APP": "sst-sharp-build-failure",
+                                "SST_STAGE": "prod",
+                                "SST_SSM_PREFIX": "/sst/sst-sharp-build-failure/prod/"
+                              }
+                            },
+                            "handler": "index.handler",
+                            "memorySize": 1024,
+                            "runtime": "nodejs18.x",
+                            "tags": [
+                              {
+                                "key": "sst:app",
+                                "value": "sst-sharp-build-failure"
+                              },
+                              {
+                                "key": "sst:stage",
+                                "value": "prod"
+                              }
+                            ],
+                            "timeout": 10
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                          "version": "2.72.1"
+                        }
+                      },
+                      "LogRetention": {
+                        "id": "LogRetention",
+                        "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/ServerFunction/LogRetention",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/ServerFunction/LogRetention/Resource",
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.CfnResource",
+                              "version": "2.72.1"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_logs.LogRetention",
+                          "version": "2.72.1"
+                        }
+                      },
+                      "LogGroup": {
+                        "id": "LogGroup",
+                        "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/ServerFunction/LogGroup",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.72.1"
+                        }
+                      },
+                      "FunctionUrl": {
+                        "id": "FunctionUrl",
+                        "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/ServerFunction/FunctionUrl",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/ServerFunction/FunctionUrl/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Url",
+                              "aws:cdk:cloudformation:props": {
+                                "authType": "NONE",
+                                "targetFunctionArn": {
+                                  "Fn::GetAtt": [
+                                    "siteServerFunction6DFA6F1B",
+                                    "Arn"
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_lambda.CfnUrl",
+                              "version": "2.72.1"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_lambda.FunctionUrl",
+                          "version": "2.72.1"
+                        }
+                      },
+                      "invoke-function-url": {
+                        "id": "invoke-function-url",
+                        "path": "prod-sst-sharp-build-failure-Site/site/ServerFunction/ServerFunction/invoke-function-url",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                          "aws:cdk:cloudformation:props": {
+                            "action": "lambda:InvokeFunctionUrl",
+                            "functionName": {
+                              "Fn::GetAtt": [
+                                "siteServerFunction6DFA6F1B",
+                                "Arn"
+                              ]
+                            },
+                            "principal": "*",
+                            "functionUrlAuthType": "NONE"
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                          "version": "2.72.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.Function",
+                      "version": "2.72.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "constructs.Construct",
+                  "version": "10.1.156"
+                }
+              },
+              "Asset0": {
+                "id": "Asset0",
+                "path": "prod-sst-sharp-build-failure-Site/site/Asset0",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "prod-sst-sharp-build-failure-Site/site/Asset0/Stage",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.AssetStaging",
+                      "version": "2.72.1"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "prod-sst-sharp-build-failure-Site/site/Asset0/AssetBucket",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                      "version": "2.72.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                  "version": "2.72.1"
+                }
+              },
+              "S3Uploader": {
+                "id": "S3Uploader",
+                "path": "prod-sst-sharp-build-failure-Site/site/S3Uploader",
+                "children": {
+                  "ServiceRole": {
+                    "id": "ServiceRole",
+                    "path": "prod-sst-sharp-build-failure-Site/site/S3Uploader/ServiceRole",
+                    "children": {
+                      "ImportServiceRole": {
+                        "id": "ImportServiceRole",
+                        "path": "prod-sst-sharp-build-failure-Site/site/S3Uploader/ServiceRole/ImportServiceRole",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.72.1"
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "prod-sst-sharp-build-failure-Site/site/S3Uploader/ServiceRole/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                          "aws:cdk:cloudformation:props": {
+                            "assumeRolePolicyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": "lambda.amazonaws.com"
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "managedPolicyArns": [
+                              {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                                  ]
+                                ]
+                              }
+                            ],
+                            "tags": [
+                              {
+                                "key": "sst:app",
+                                "value": "sst-sharp-build-failure"
+                              },
+                              {
+                                "key": "sst:stage",
+                                "value": "prod"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                          "version": "2.72.1"
+                        }
+                      },
+                      "DefaultPolicy": {
+                        "id": "DefaultPolicy",
+                        "path": "prod-sst-sharp-build-failure-Site/site/S3Uploader/ServiceRole/DefaultPolicy",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "prod-sst-sharp-build-failure-Site/site/S3Uploader/ServiceRole/DefaultPolicy/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                              "aws:cdk:cloudformation:props": {
+                                "policyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": [
+                                        "s3:GetObject*",
+                                        "s3:GetBucket*",
+                                        "s3:List*",
+                                        "s3:DeleteObject*",
+                                        "s3:PutObject",
+                                        "s3:PutObjectLegalHold",
+                                        "s3:PutObjectRetention",
+                                        "s3:PutObjectTagging",
+                                        "s3:PutObjectVersionTagging",
+                                        "s3:Abort*"
+                                      ],
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Fn::GetAtt": [
+                                            "siteS3Bucket2B2851F3",
+                                            "Arn"
+                                          ]
+                                        },
+                                        {
+                                          "Fn::Join": [
+                                            "",
+                                            [
+                                              {
+                                                "Fn::GetAtt": [
+                                                  "siteS3Bucket2B2851F3",
+                                                  "Arn"
+                                                ]
+                                              },
+                                              "/*"
+                                            ]
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Action": [
+                                        "s3:GetObject*",
+                                        "s3:GetBucket*",
+                                        "s3:List*"
+                                      ],
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Fn::Join": [
+                                            "",
+                                            [
+                                              "arn:",
+                                              {
+                                                "Ref": "AWS::Partition"
+                                              },
+                                              ":s3:::cdk-hnb659fds-assets-197642523592-us-east-1"
+                                            ]
+                                          ]
+                                        },
+                                        {
+                                          "Fn::Join": [
+                                            "",
+                                            [
+                                              "arn:",
+                                              {
+                                                "Ref": "AWS::Partition"
+                                              },
+                                              ":s3:::cdk-hnb659fds-assets-197642523592-us-east-1/*"
+                                            ]
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "policyName": "siteS3UploaderServiceRoleDefaultPolicy8BA893D3",
+                                "roles": [
+                                  {
+                                    "Ref": "siteS3UploaderServiceRole973F5A0B"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                              "version": "2.72.1"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.Policy",
+                          "version": "2.72.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Role",
+                      "version": "2.72.1"
+                    }
+                  },
+                  "Code": {
+                    "id": "Code",
+                    "path": "prod-sst-sharp-build-failure-Site/site/S3Uploader/Code",
+                    "children": {
+                      "Stage": {
+                        "id": "Stage",
+                        "path": "prod-sst-sharp-build-failure-Site/site/S3Uploader/Code/Stage",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.72.1"
+                        }
+                      },
+                      "AssetBucket": {
+                        "id": "AssetBucket",
+                        "path": "prod-sst-sharp-build-failure-Site/site/S3Uploader/Code/AssetBucket",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                          "version": "2.72.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                      "version": "2.72.1"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "prod-sst-sharp-build-failure-Site/site/S3Uploader/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                      "aws:cdk:cloudformation:props": {
+                        "code": {
+                          "s3Bucket": "cdk-hnb659fds-assets-197642523592-us-east-1",
+                          "s3Key": "5314dd0b83a9c16d227872e4b881e96d2361ae01b02d8bdc3b24c30fd31aa758.zip"
+                        },
+                        "role": {
+                          "Fn::GetAtt": [
+                            "siteS3UploaderServiceRole973F5A0B",
+                            "Arn"
+                          ]
+                        },
+                        "handler": "s3-upload.handler",
+                        "layers": [
+                          {
+                            "Ref": "siteAwsCliLayer359A0EF0"
+                          }
+                        ],
+                        "memorySize": 1024,
+                        "runtime": "python3.7",
+                        "tags": [
+                          {
+                            "key": "sst:app",
+                            "value": "sst-sharp-build-failure"
+                          },
+                          {
+                            "key": "sst:stage",
+                            "value": "prod"
+                          }
+                        ],
+                        "timeout": 900
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                      "version": "2.72.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "version": "2.72.1"
+                }
+              },
+              "S3Handler": {
+                "id": "S3Handler",
+                "path": "prod-sst-sharp-build-failure-Site/site/S3Handler",
+                "children": {
+                  "ServiceRole": {
+                    "id": "ServiceRole",
+                    "path": "prod-sst-sharp-build-failure-Site/site/S3Handler/ServiceRole",
+                    "children": {
+                      "ImportServiceRole": {
+                        "id": "ImportServiceRole",
+                        "path": "prod-sst-sharp-build-failure-Site/site/S3Handler/ServiceRole/ImportServiceRole",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.72.1"
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "prod-sst-sharp-build-failure-Site/site/S3Handler/ServiceRole/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                          "aws:cdk:cloudformation:props": {
+                            "assumeRolePolicyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": "lambda.amazonaws.com"
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "managedPolicyArns": [
+                              {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                                  ]
+                                ]
+                              }
+                            ],
+                            "tags": [
+                              {
+                                "key": "sst:app",
+                                "value": "sst-sharp-build-failure"
+                              },
+                              {
+                                "key": "sst:stage",
+                                "value": "prod"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                          "version": "2.72.1"
+                        }
+                      },
+                      "DefaultPolicy": {
+                        "id": "DefaultPolicy",
+                        "path": "prod-sst-sharp-build-failure-Site/site/S3Handler/ServiceRole/DefaultPolicy",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "prod-sst-sharp-build-failure-Site/site/S3Handler/ServiceRole/DefaultPolicy/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                              "aws:cdk:cloudformation:props": {
+                                "policyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": [
+                                        "s3:GetObject*",
+                                        "s3:GetBucket*",
+                                        "s3:List*",
+                                        "s3:DeleteObject*",
+                                        "s3:PutObject",
+                                        "s3:PutObjectLegalHold",
+                                        "s3:PutObjectRetention",
+                                        "s3:PutObjectTagging",
+                                        "s3:PutObjectVersionTagging",
+                                        "s3:Abort*"
+                                      ],
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Fn::GetAtt": [
+                                            "siteS3Bucket2B2851F3",
+                                            "Arn"
+                                          ]
+                                        },
+                                        {
+                                          "Fn::Join": [
+                                            "",
+                                            [
+                                              {
+                                                "Fn::GetAtt": [
+                                                  "siteS3Bucket2B2851F3",
+                                                  "Arn"
+                                                ]
+                                              },
+                                              "/*"
+                                            ]
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "Action": "lambda:InvokeFunction",
+                                      "Effect": "Allow",
+                                      "Resource": [
+                                        {
+                                          "Fn::GetAtt": [
+                                            "siteS3Uploader2837C218",
+                                            "Arn"
+                                          ]
+                                        },
+                                        {
+                                          "Fn::Join": [
+                                            "",
+                                            [
+                                              {
+                                                "Fn::GetAtt": [
+                                                  "siteS3Uploader2837C218",
+                                                  "Arn"
+                                                ]
+                                              },
+                                              ":*"
+                                            ]
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "policyName": "siteS3HandlerServiceRoleDefaultPolicy1BD27252",
+                                "roles": [
+                                  {
+                                    "Ref": "siteS3HandlerServiceRole6D2CC8E3"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                              "version": "2.72.1"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.Policy",
+                          "version": "2.72.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Role",
+                      "version": "2.72.1"
+                    }
+                  },
+                  "Code": {
+                    "id": "Code",
+                    "path": "prod-sst-sharp-build-failure-Site/site/S3Handler/Code",
+                    "children": {
+                      "Stage": {
+                        "id": "Stage",
+                        "path": "prod-sst-sharp-build-failure-Site/site/S3Handler/Code/Stage",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.72.1"
+                        }
+                      },
+                      "AssetBucket": {
+                        "id": "AssetBucket",
+                        "path": "prod-sst-sharp-build-failure-Site/site/S3Handler/Code/AssetBucket",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                          "version": "2.72.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                      "version": "2.72.1"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "prod-sst-sharp-build-failure-Site/site/S3Handler/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                      "aws:cdk:cloudformation:props": {
+                        "code": {
+                          "s3Bucket": "cdk-hnb659fds-assets-197642523592-us-east-1",
+                          "s3Key": "5314dd0b83a9c16d227872e4b881e96d2361ae01b02d8bdc3b24c30fd31aa758.zip"
+                        },
+                        "role": {
+                          "Fn::GetAtt": [
+                            "siteS3HandlerServiceRole6D2CC8E3",
+                            "Arn"
+                          ]
+                        },
+                        "environment": {
+                          "variables": {
+                            "UPLOADER_FUNCTION_NAME": {
+                              "Ref": "siteS3Uploader2837C218"
+                            }
+                          }
+                        },
+                        "handler": "s3-handler.handler",
+                        "layers": [
+                          {
+                            "Ref": "siteAwsCliLayer359A0EF0"
+                          }
+                        ],
+                        "memorySize": 1024,
+                        "runtime": "python3.7",
+                        "tags": [
+                          {
+                            "key": "sst:app",
+                            "value": "sst-sharp-build-failure"
+                          },
+                          {
+                            "key": "sst:stage",
+                            "value": "prod"
+                          }
+                        ],
+                        "timeout": 900
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                      "version": "2.72.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "version": "2.72.1"
+                }
+              },
+              "S3Deployment": {
+                "id": "S3Deployment",
+                "path": "prod-sst-sharp-build-failure-Site/site/S3Deployment",
+                "children": {
+                  "Default": {
+                    "id": "Default",
+                    "path": "prod-sst-sharp-build-failure-Site/site/S3Deployment/Default",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnResource",
+                      "version": "2.72.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CustomResource",
+                  "version": "2.72.1"
+                }
+              },
+              "ServerCache": {
+                "id": "ServerCache",
+                "path": "prod-sst-sharp-build-failure-Site/site/ServerCache",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "prod-sst-sharp-build-failure-Site/site/ServerCache/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::CloudFront::CachePolicy",
+                      "aws:cdk:cloudformation:props": {
+                        "cachePolicyConfig": {
+                          "name": "prodsstsharpbuildfailureSitesiteServerCache6B3FB918-us-east-1",
+                          "comment": "SST server response cache policy",
+                          "minTtl": 0,
+                          "maxTtl": 31536000,
+                          "defaultTtl": 0,
+                          "parametersInCacheKeyAndForwardedToOrigin": {
+                            "cookiesConfig": {
+                              "cookieBehavior": "all"
+                            },
+                            "headersConfig": {
+                              "headerBehavior": "none"
+                            },
+                            "enableAcceptEncodingGzip": true,
+                            "enableAcceptEncodingBrotli": true,
+                            "queryStringsConfig": {
+                              "queryStringBehavior": "all"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_cloudfront.CfnCachePolicy",
+                      "version": "2.72.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudfront.CachePolicy",
+                  "version": "2.72.1"
+                }
+              },
+              "ServerOriginRequestPolicy": {
+                "id": "ServerOriginRequestPolicy",
+                "path": "prod-sst-sharp-build-failure-Site/site/ServerOriginRequestPolicy",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.Resource",
+                  "version": "2.72.1"
+                }
+              },
+              "ImageFunction": {
+                "id": "ImageFunction",
+                "path": "prod-sst-sharp-build-failure-Site/site/ImageFunction",
+                "children": {
+                  "ServiceRole": {
+                    "id": "ServiceRole",
+                    "path": "prod-sst-sharp-build-failure-Site/site/ImageFunction/ServiceRole",
+                    "children": {
+                      "ImportServiceRole": {
+                        "id": "ImportServiceRole",
+                        "path": "prod-sst-sharp-build-failure-Site/site/ImageFunction/ServiceRole/ImportServiceRole",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.Resource",
+                          "version": "2.72.1"
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "prod-sst-sharp-build-failure-Site/site/ImageFunction/ServiceRole/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                          "aws:cdk:cloudformation:props": {
+                            "assumeRolePolicyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Principal": {
+                                    "Service": "lambda.amazonaws.com"
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "managedPolicyArns": [
+                              {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                                  ]
+                                ]
+                              }
+                            ],
+                            "tags": [
+                              {
+                                "key": "sst:app",
+                                "value": "sst-sharp-build-failure"
+                              },
+                              {
+                                "key": "sst:stage",
+                                "value": "prod"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                          "version": "2.72.1"
+                        }
+                      },
+                      "DefaultPolicy": {
+                        "id": "DefaultPolicy",
+                        "path": "prod-sst-sharp-build-failure-Site/site/ImageFunction/ServiceRole/DefaultPolicy",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "prod-sst-sharp-build-failure-Site/site/ImageFunction/ServiceRole/DefaultPolicy/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                              "aws:cdk:cloudformation:props": {
+                                "policyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": "s3:GetObject",
+                                      "Effect": "Allow",
+                                      "Resource": {
+                                        "Fn::Join": [
+                                          "",
+                                          [
+                                            {
+                                              "Fn::GetAtt": [
+                                                "siteS3Bucket2B2851F3",
+                                                "Arn"
+                                              ]
+                                            },
+                                            "/*"
+                                          ]
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                },
+                                "policyName": "siteImageFunctionServiceRoleDefaultPolicy39F33332",
+                                "roles": [
+                                  {
+                                    "Ref": "siteImageFunctionServiceRoleAD5B95E2"
+                                  }
+                                ]
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                              "version": "2.72.1"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.Policy",
+                          "version": "2.72.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Role",
+                      "version": "2.72.1"
+                    }
+                  },
+                  "Code": {
+                    "id": "Code",
+                    "path": "prod-sst-sharp-build-failure-Site/site/ImageFunction/Code",
+                    "children": {
+                      "Stage": {
+                        "id": "Stage",
+                        "path": "prod-sst-sharp-build-failure-Site/site/ImageFunction/Code/Stage",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.AssetStaging",
+                          "version": "2.72.1"
+                        }
+                      },
+                      "AssetBucket": {
+                        "id": "AssetBucket",
+                        "path": "prod-sst-sharp-build-failure-Site/site/ImageFunction/Code/AssetBucket",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                          "version": "2.72.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                      "version": "2.72.1"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "prod-sst-sharp-build-failure-Site/site/ImageFunction/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                      "aws:cdk:cloudformation:props": {
+                        "code": {
+                          "s3Bucket": "cdk-hnb659fds-assets-197642523592-us-east-1",
+                          "s3Key": "c905a56a09ffb2b1be498a5f6b612be6969839d63134c1c7a8bdaaa278d4db78.zip"
+                        },
+                        "role": {
+                          "Fn::GetAtt": [
+                            "siteImageFunctionServiceRoleAD5B95E2",
+                            "Arn"
+                          ]
+                        },
+                        "architectures": [
+                          "arm64"
+                        ],
+                        "description": "Image optimization handler for Next.js",
+                        "environment": {
+                          "variables": {
+                            "BUCKET_NAME": {
+                              "Ref": "siteS3Bucket2B2851F3"
+                            }
+                          }
+                        },
+                        "handler": "index.handler",
+                        "memorySize": 1536,
+                        "runtime": "nodejs18.x",
+                        "tags": [
+                          {
+                            "key": "sst:app",
+                            "value": "sst-sharp-build-failure"
+                          },
+                          {
+                            "key": "sst:stage",
+                            "value": "prod"
+                          }
+                        ],
+                        "timeout": 25
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                      "version": "2.72.1"
+                    }
+                  },
+                  "LogRetention": {
+                    "id": "LogRetention",
+                    "path": "prod-sst-sharp-build-failure-Site/site/ImageFunction/LogRetention",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "prod-sst-sharp-build-failure-Site/site/ImageFunction/LogRetention/Resource",
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.CfnResource",
+                          "version": "2.72.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_logs.LogRetention",
+                      "version": "2.72.1"
+                    }
+                  },
+                  "LogGroup": {
+                    "id": "LogGroup",
+                    "path": "prod-sst-sharp-build-failure-Site/site/ImageFunction/LogGroup",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.Resource",
+                      "version": "2.72.1"
+                    }
+                  },
+                  "FunctionUrl": {
+                    "id": "FunctionUrl",
+                    "path": "prod-sst-sharp-build-failure-Site/site/ImageFunction/FunctionUrl",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "prod-sst-sharp-build-failure-Site/site/ImageFunction/FunctionUrl/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::Lambda::Url",
+                          "aws:cdk:cloudformation:props": {
+                            "authType": "NONE",
+                            "targetFunctionArn": {
+                              "Fn::GetAtt": [
+                                "siteImageFunctionD6B403E9",
+                                "Arn"
+                              ]
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_lambda.CfnUrl",
+                          "version": "2.72.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.FunctionUrl",
+                      "version": "2.72.1"
+                    }
+                  },
+                  "invoke-function-url": {
+                    "id": "invoke-function-url",
+                    "path": "prod-sst-sharp-build-failure-Site/site/ImageFunction/invoke-function-url",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                      "aws:cdk:cloudformation:props": {
+                        "action": "lambda:InvokeFunctionUrl",
+                        "functionName": {
+                          "Fn::GetAtt": [
+                            "siteImageFunctionD6B403E9",
+                            "Arn"
+                          ]
+                        },
+                        "principal": "*",
+                        "functionUrlAuthType": "NONE"
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                      "version": "2.72.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.Function",
+                  "version": "2.72.1"
+                }
+              },
+              "Distribution": {
+                "id": "Distribution",
+                "path": "prod-sst-sharp-build-failure-Site/site/Distribution",
+                "children": {
+                  "Origin1": {
+                    "id": "Origin1",
+                    "path": "prod-sst-sharp-build-failure-Site/site/Distribution/Origin1",
+                    "constructInfo": {
+                      "fqn": "constructs.Construct",
+                      "version": "10.1.156"
+                    }
+                  },
+                  "OriginGroup1": {
+                    "id": "OriginGroup1",
+                    "path": "prod-sst-sharp-build-failure-Site/site/Distribution/OriginGroup1",
+                    "constructInfo": {
+                      "fqn": "constructs.Construct",
+                      "version": "10.1.156"
+                    }
+                  },
+                  "Origin2": {
+                    "id": "Origin2",
+                    "path": "prod-sst-sharp-build-failure-Site/site/Distribution/Origin2",
+                    "children": {
+                      "S3Origin": {
+                        "id": "S3Origin",
+                        "path": "prod-sst-sharp-build-failure-Site/site/Distribution/Origin2/S3Origin",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "prod-sst-sharp-build-failure-Site/site/Distribution/Origin2/S3Origin/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
+                              "aws:cdk:cloudformation:props": {
+                                "cloudFrontOriginAccessIdentityConfig": {
+                                  "comment": "Identity for prodsstsharpbuildfailureSitesiteDistributionOrigin2B1A782A7"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_cloudfront.CfnCloudFrontOriginAccessIdentity",
+                              "version": "2.72.1"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_cloudfront.OriginAccessIdentity",
+                          "version": "2.72.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "constructs.Construct",
+                      "version": "10.1.156"
+                    }
+                  },
+                  "Origin3": {
+                    "id": "Origin3",
+                    "path": "prod-sst-sharp-build-failure-Site/site/Distribution/Origin3",
+                    "constructInfo": {
+                      "fqn": "constructs.Construct",
+                      "version": "10.1.156"
+                    }
+                  },
+                  "Origin4": {
+                    "id": "Origin4",
+                    "path": "prod-sst-sharp-build-failure-Site/site/Distribution/Origin4",
+                    "constructInfo": {
+                      "fqn": "constructs.Construct",
+                      "version": "10.1.156"
+                    }
+                  },
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "prod-sst-sharp-build-failure-Site/site/Distribution/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::CloudFront::Distribution",
+                      "aws:cdk:cloudformation:props": {
+                        "distributionConfig": {
+                          "enabled": true,
+                          "origins": [
+                            {
+                              "domainName": {
+                                "Fn::Select": [
+                                  0,
+                                  {
+                                    "Fn::Split": [
+                                      "/",
+                                      {
+                                        "Fn::Select": [
+                                          1,
+                                          {
+                                            "Fn::Split": [
+                                              "//",
+                                              {
+                                                "Fn::GetAtt": [
+                                                  "siteServerFunctionFunctionUrl1B09C490",
+                                                  "FunctionUrl"
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              "id": "prodsstsharpbuildfailureSitesiteDistributionOrigin12AD32B40",
+                              "customOriginConfig": {
+                                "originSslProtocols": [
+                                  "TLSv1.2"
+                                ],
+                                "originProtocolPolicy": "https-only"
+                              }
+                            },
+                            {
+                              "domainName": {
+                                "Fn::GetAtt": [
+                                  "siteS3Bucket2B2851F3",
+                                  "RegionalDomainName"
+                                ]
+                              },
+                              "id": "prodsstsharpbuildfailureSitesiteDistributionOrigin2B1A782A7",
+                              "s3OriginConfig": {
+                                "originAccessIdentity": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "origin-access-identity/cloudfront/",
+                                      {
+                                        "Ref": "siteDistributionOrigin2S3Origin49B86EE9"
+                                      }
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            {
+                              "domainName": {
+                                "Fn::Select": [
+                                  0,
+                                  {
+                                    "Fn::Split": [
+                                      "/",
+                                      {
+                                        "Fn::Select": [
+                                          1,
+                                          {
+                                            "Fn::Split": [
+                                              "//",
+                                              {
+                                                "Fn::GetAtt": [
+                                                  "siteServerFunctionFunctionUrl1B09C490",
+                                                  "FunctionUrl"
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              "id": "prodsstsharpbuildfailureSitesiteDistributionOrigin3970C76D1",
+                              "customOriginConfig": {
+                                "originSslProtocols": [
+                                  "TLSv1.2"
+                                ],
+                                "originProtocolPolicy": "https-only"
+                              }
+                            },
+                            {
+                              "domainName": {
+                                "Fn::Select": [
+                                  0,
+                                  {
+                                    "Fn::Split": [
+                                      "/",
+                                      {
+                                        "Fn::Select": [
+                                          1,
+                                          {
+                                            "Fn::Split": [
+                                              "//",
+                                              {
+                                                "Fn::GetAtt": [
+                                                  "siteImageFunctionFunctionUrl110B87E7",
+                                                  "FunctionUrl"
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              "id": "prodsstsharpbuildfailureSitesiteDistributionOrigin4BD73D1E1",
+                              "customOriginConfig": {
+                                "originSslProtocols": [
+                                  "TLSv1.2"
+                                ],
+                                "originProtocolPolicy": "https-only"
+                              }
+                            }
+                          ],
+                          "originGroups": {
+                            "items": [
+                              {
+                                "failoverCriteria": {
+                                  "statusCodes": {
+                                    "items": [
+                                      503
+                                    ],
+                                    "quantity": 1
+                                  }
+                                },
+                                "id": "prodsstsharpbuildfailureSitesiteDistributionOriginGroup1EB13FBF8",
+                                "members": {
+                                  "items": [
+                                    {
+                                      "originId": "prodsstsharpbuildfailureSitesiteDistributionOrigin12AD32B40"
+                                    },
+                                    {
+                                      "originId": "prodsstsharpbuildfailureSitesiteDistributionOrigin2B1A782A7"
+                                    }
+                                  ],
+                                  "quantity": 2
+                                }
+                              }
+                            ],
+                            "quantity": 1
+                          },
+                          "defaultCacheBehavior": {
+                            "pathPattern": "*",
+                            "targetOriginId": "prodsstsharpbuildfailureSitesiteDistributionOriginGroup1EB13FBF8",
+                            "cachePolicyId": {
+                              "Ref": "siteServerCacheDD54ACDF"
+                            },
+                            "compress": true,
+                            "originRequestPolicyId": "b689b0a8-53d0-40ab-baf2-68738e2966ac",
+                            "viewerProtocolPolicy": "redirect-to-https"
+                          },
+                          "aliases": [],
+                          "cacheBehaviors": [
+                            {
+                              "pathPattern": "api/*",
+                              "targetOriginId": "prodsstsharpbuildfailureSitesiteDistributionOrigin3970C76D1",
+                              "allowedMethods": [
+                                "GET",
+                                "HEAD",
+                                "OPTIONS",
+                                "PUT",
+                                "PATCH",
+                                "POST",
+                                "DELETE"
+                              ],
+                              "cachedMethods": [
+                                "GET",
+                                "HEAD",
+                                "OPTIONS"
+                              ],
+                              "cachePolicyId": {
+                                "Ref": "siteServerCacheDD54ACDF"
+                              },
+                              "compress": true,
+                              "originRequestPolicyId": "b689b0a8-53d0-40ab-baf2-68738e2966ac",
+                              "viewerProtocolPolicy": "redirect-to-https"
+                            },
+                            {
+                              "pathPattern": "_next/data/*",
+                              "targetOriginId": "prodsstsharpbuildfailureSitesiteDistributionOrigin3970C76D1",
+                              "allowedMethods": [
+                                "GET",
+                                "HEAD",
+                                "OPTIONS",
+                                "PUT",
+                                "PATCH",
+                                "POST",
+                                "DELETE"
+                              ],
+                              "cachedMethods": [
+                                "GET",
+                                "HEAD",
+                                "OPTIONS"
+                              ],
+                              "cachePolicyId": {
+                                "Ref": "siteServerCacheDD54ACDF"
+                              },
+                              "compress": true,
+                              "originRequestPolicyId": "b689b0a8-53d0-40ab-baf2-68738e2966ac",
+                              "viewerProtocolPolicy": "redirect-to-https"
+                            },
+                            {
+                              "pathPattern": "_next/image*",
+                              "targetOriginId": "prodsstsharpbuildfailureSitesiteDistributionOrigin4BD73D1E1",
+                              "allowedMethods": [
+                                "GET",
+                                "HEAD",
+                                "OPTIONS",
+                                "PUT",
+                                "PATCH",
+                                "POST",
+                                "DELETE"
+                              ],
+                              "cachedMethods": [
+                                "GET",
+                                "HEAD",
+                                "OPTIONS"
+                              ],
+                              "cachePolicyId": {
+                                "Ref": "siteServerCacheDD54ACDF"
+                              },
+                              "compress": true,
+                              "viewerProtocolPolicy": "redirect-to-https"
+                            },
+                            {
+                              "pathPattern": "_next/*",
+                              "targetOriginId": "prodsstsharpbuildfailureSitesiteDistributionOrigin2B1A782A7",
+                              "allowedMethods": [
+                                "GET",
+                                "HEAD",
+                                "OPTIONS"
+                              ],
+                              "cachedMethods": [
+                                "GET",
+                                "HEAD",
+                                "OPTIONS"
+                              ],
+                              "cachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+                              "compress": true,
+                              "viewerProtocolPolicy": "redirect-to-https"
+                            }
+                          ],
+                          "defaultRootObject": "",
+                          "httpVersion": "http2",
+                          "ipv6Enabled": true
+                        },
+                        "tags": [
+                          {
+                            "key": "sst:app",
+                            "value": "sst-sharp-build-failure"
+                          },
+                          {
+                            "key": "sst:stage",
+                            "value": "prod"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_cloudfront.CfnDistribution",
+                      "version": "2.72.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudfront.Distribution",
+                  "version": "2.72.1"
+                }
+              },
+              "CloudFrontInvalidatorPolicy": {
+                "id": "CloudFrontInvalidatorPolicy",
+                "path": "prod-sst-sharp-build-failure-Site/site/CloudFrontInvalidatorPolicy",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "prod-sst-sharp-build-failure-Site/site/CloudFrontInvalidatorPolicy/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                      "aws:cdk:cloudformation:props": {
+                        "policyDocument": {
+                          "Statement": [
+                            {
+                              "Action": [
+                                "cloudfront:GetInvalidation",
+                                "cloudfront:CreateInvalidation"
+                              ],
+                              "Effect": "Allow",
+                              "Resource": {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    "arn:",
+                                    {
+                                      "Ref": "AWS::Partition"
+                                    },
+                                    ":cloudfront::197642523592:distribution/",
+                                    {
+                                      "Ref": "siteDistribution706F5265"
+                                    }
+                                  ]
+                                ]
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "policyName": "siteCloudFrontInvalidatorPolicyEE18C654",
+                        "roles": [
+                          {
+                            "Ref": "CustomResourceHandlerServiceRole41AEC181"
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                      "version": "2.72.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                  "version": "2.72.1"
+                }
+              },
+              "CloudFrontInvalidator": {
+                "id": "CloudFrontInvalidator",
+                "path": "prod-sst-sharp-build-failure-Site/site/CloudFrontInvalidator",
+                "children": {
+                  "Default": {
+                    "id": "Default",
+                    "path": "prod-sst-sharp-build-failure-Site/site/CloudFrontInvalidator/Default",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.CfnResource",
+                      "version": "2.72.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CustomResource",
+                  "version": "2.72.1"
+                }
+              },
+              "Parameter_url": {
+                "id": "Parameter_url",
+                "path": "prod-sst-sharp-build-failure-Site/site/Parameter_url",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "prod-sst-sharp-build-failure-Site/site/Parameter_url/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::SSM::Parameter",
+                      "aws:cdk:cloudformation:props": {
+                        "type": "String",
+                        "value": {
+                          "Fn::Join": [
+                            "",
+                            [
+                              "https://",
+                              {
+                                "Fn::GetAtt": [
+                                  "siteDistribution706F5265",
+                                  "DomainName"
+                                ]
+                              }
+                            ]
+                          ]
+                        },
+                        "name": "/sst/sst-sharp-build-failure/prod/NextjsSite/site/url",
+                        "tags": {
+                          "sst:app": "sst-sharp-build-failure",
+                          "sst:stage": "prod"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_ssm.CfnParameter",
+                      "version": "2.72.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_ssm.StringParameter",
+                  "version": "2.72.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.1.156"
+            }
+          },
+          "Custom::S3AutoDeleteObjectsCustomResourceProvider": {
+            "id": "Custom::S3AutoDeleteObjectsCustomResourceProvider",
+            "path": "prod-sst-sharp-build-failure-Site/Custom::S3AutoDeleteObjectsCustomResourceProvider",
+            "children": {
+              "Staging": {
+                "id": "Staging",
+                "path": "prod-sst-sharp-build-failure-Site/Custom::S3AutoDeleteObjectsCustomResourceProvider/Staging",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.AssetStaging",
+                  "version": "2.72.1"
+                }
+              },
+              "Role": {
+                "id": "Role",
+                "path": "prod-sst-sharp-build-failure-Site/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.72.1"
+                }
+              },
+              "Handler": {
+                "id": "Handler",
+                "path": "prod-sst-sharp-build-failure-Site/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.72.1"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CustomResourceProvider",
+              "version": "2.72.1"
+            }
+          },
+          "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a": {
+            "id": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a",
+            "path": "prod-sst-sharp-build-failure-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a",
+            "children": {
+              "Code": {
+                "id": "Code",
+                "path": "prod-sst-sharp-build-failure-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "prod-sst-sharp-build-failure-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.AssetStaging",
+                      "version": "2.72.1"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "prod-sst-sharp-build-failure-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/AssetBucket",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                      "version": "2.72.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                  "version": "2.72.1"
+                }
+              },
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "prod-sst-sharp-build-failure-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole",
+                "children": {
+                  "ImportServiceRole": {
+                    "id": "ImportServiceRole",
+                    "path": "prod-sst-sharp-build-failure-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/ImportServiceRole",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.Resource",
                       "version": "2.72.1"
@@ -166,7 +2183,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "reidar-sst-sharp-build-failure-Site/site/ServerFunctionRole/Resource",
+                    "path": "prod-sst-sharp-build-failure-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -176,13 +2193,26 @@
                               "Action": "sts:AssumeRole",
                               "Effect": "Allow",
                               "Principal": {
-                                "AWS": "*"
+                                "Service": "lambda.amazonaws.com"
                               }
                             }
                           ],
                           "Version": "2012-10-17"
                         },
-                        "maxSessionDuration": 43200,
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ],
                         "tags": [
                           {
                             "key": "sst:app",
@@ -190,7 +2220,7 @@
                           },
                           {
                             "key": "sst:stage",
-                            "value": "reidar"
+                            "value": "prod"
                           }
                         ]
                       }
@@ -202,11 +2232,11 @@
                   },
                   "DefaultPolicy": {
                     "id": "DefaultPolicy",
-                    "path": "reidar-sst-sharp-build-failure-Site/site/ServerFunctionRole/DefaultPolicy",
+                    "path": "prod-sst-sharp-build-failure-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "reidar-sst-sharp-build-failure-Site/site/ServerFunctionRole/DefaultPolicy/Resource",
+                        "path": "prod-sst-sharp-build-failure-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -214,29 +2244,19 @@
                               "Statement": [
                                 {
                                   "Action": [
-                                    "xray:PutTraceSegments",
-                                    "xray:PutTelemetryRecords"
+                                    "logs:PutRetentionPolicy",
+                                    "logs:DeleteRetentionPolicy"
                                   ],
                                   "Effect": "Allow",
                                   "Resource": "*"
-                                },
-                                {
-                                  "Action": "iot:*",
-                                  "Effect": "Allow",
-                                  "Resource": "*"
-                                },
-                                {
-                                  "Action": "s3:*",
-                                  "Effect": "Allow",
-                                  "Resource": "arn:aws:s3:::sstbootstrap-useast124d14e4b-1g9qmvqjom02x"
                                 }
                               ],
                               "Version": "2012-10-17"
                             },
-                            "policyName": "siteServerFunctionRoleDefaultPolicy213DB8A5",
+                            "policyName": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
                             "roles": [
                               {
-                                "Ref": "siteServerFunctionRole1F8F4FAC"
+                                "Ref": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB"
                               }
                             ]
                           }
@@ -258,150 +2278,11 @@
                   "version": "2.72.1"
                 }
               },
-              "ServerFunction": {
-                "id": "ServerFunction",
-                "path": "reidar-sst-sharp-build-failure-Site/site/ServerFunction",
-                "children": {
-                  "Code": {
-                    "id": "Code",
-                    "path": "reidar-sst-sharp-build-failure-Site/site/ServerFunction/Code",
-                    "children": {
-                      "Stage": {
-                        "id": "Stage",
-                        "path": "reidar-sst-sharp-build-failure-Site/site/ServerFunction/Code/Stage",
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.AssetStaging",
-                          "version": "2.72.1"
-                        }
-                      },
-                      "AssetBucket": {
-                        "id": "AssetBucket",
-                        "path": "reidar-sst-sharp-build-failure-Site/site/ServerFunction/Code/AssetBucket",
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_s3.BucketBase",
-                          "version": "2.72.1"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
-                      "version": "2.72.1"
-                    }
-                  },
-                  "Resource": {
-                    "id": "Resource",
-                    "path": "reidar-sst-sharp-build-failure-Site/site/ServerFunction/Resource",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
-                      "aws:cdk:cloudformation:props": {
-                        "code": {
-                          "s3Bucket": "cdk-hnb659fds-assets-197642523592-us-east-1",
-                          "s3Key": "9fe9969c98dee83cbe72e215307d8491aa401ab9894e93572633e9002918d92c.zip"
-                        },
-                        "role": {
-                          "Fn::GetAtt": [
-                            "siteServerFunctionRole1F8F4FAC",
-                            "Arn"
-                          ]
-                        },
-                        "description": "Server handler placeholder",
-                        "environment": {
-                          "variables": {
-                            "SST_FUNCTION_ID": "c856cfa66ce8976d3b1c9771202cff6bf9fb91b92b",
-                            "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1",
-                            "SST_APP": "sst-sharp-build-failure",
-                            "SST_STAGE": "reidar",
-                            "SST_SSM_PREFIX": "/sst/sst-sharp-build-failure/reidar/"
-                          }
-                        },
-                        "ephemeralStorage": {
-                          "size": 512
-                        },
-                        "handler": "bridge.handler",
-                        "memorySize": 1024,
-                        "runtime": "nodejs16.x",
-                        "tags": [
-                          {
-                            "key": "sst:app",
-                            "value": "sst-sharp-build-failure"
-                          },
-                          {
-                            "key": "sst:stage",
-                            "value": "reidar"
-                          }
-                        ],
-                        "timeout": 10,
-                        "tracingConfig": {
-                          "mode": "Active"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
-                      "version": "2.72.1"
-                    }
-                  },
-                  "EventInvokeConfig": {
-                    "id": "EventInvokeConfig",
-                    "path": "reidar-sst-sharp-build-failure-Site/site/ServerFunction/EventInvokeConfig",
-                    "children": {
-                      "Resource": {
-                        "id": "Resource",
-                        "path": "reidar-sst-sharp-build-failure-Site/site/ServerFunction/EventInvokeConfig/Resource",
-                        "attributes": {
-                          "aws:cdk:cloudformation:type": "AWS::Lambda::EventInvokeConfig",
-                          "aws:cdk:cloudformation:props": {
-                            "functionName": {
-                              "Ref": "siteServerFunctionA4E45ACA"
-                            },
-                            "qualifier": "$LATEST",
-                            "maximumRetryAttempts": 0
-                          }
-                        },
-                        "constructInfo": {
-                          "fqn": "aws-cdk-lib.aws_lambda.CfnEventInvokeConfig",
-                          "version": "2.72.1"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_lambda.EventInvokeConfig",
-                      "version": "2.72.1"
-                    }
-                  }
-                },
+              "Resource": {
+                "id": "Resource",
+                "path": "prod-sst-sharp-build-failure-Site/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource",
                 "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_lambda.Function",
-                  "version": "2.72.1"
-                }
-              },
-              "Parameter_url": {
-                "id": "Parameter_url",
-                "path": "reidar-sst-sharp-build-failure-Site/site/Parameter_url",
-                "children": {
-                  "Resource": {
-                    "id": "Resource",
-                    "path": "reidar-sst-sharp-build-failure-Site/site/Parameter_url/Resource",
-                    "attributes": {
-                      "aws:cdk:cloudformation:type": "AWS::SSM::Parameter",
-                      "aws:cdk:cloudformation:props": {
-                        "type": "String",
-                        "value": "localhost",
-                        "name": "/sst/sst-sharp-build-failure/reidar/NextjsSite/site/url",
-                        "tags": {
-                          "sst:app": "sst-sharp-build-failure",
-                          "sst:stage": "reidar"
-                        }
-                      }
-                    },
-                    "constructInfo": {
-                      "fqn": "aws-cdk-lib.aws_ssm.CfnParameter",
-                      "version": "2.72.1"
-                    }
-                  }
-                },
-                "constructInfo": {
-                  "fqn": "aws-cdk-lib.aws_ssm.StringParameter",
+                  "fqn": "aws-cdk-lib.CfnResource",
                   "version": "2.72.1"
                 }
               }
@@ -411,9 +2292,17 @@
               "version": "10.1.156"
             }
           },
+          "SSTStackOutputSiteUrl": {
+            "id": "SSTStackOutputSiteUrl",
+            "path": "prod-sst-sharp-build-failure-Site/SSTStackOutputSiteUrl",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.72.1"
+            }
+          },
           "SSTStackOutputSSTMetadata": {
             "id": "SSTStackOutputSSTMetadata",
-            "path": "reidar-sst-sharp-build-failure-Site/SSTStackOutputSSTMetadata",
+            "path": "prod-sst-sharp-build-failure-Site/SSTStackOutputSSTMetadata",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnOutput",
               "version": "2.72.1"
@@ -421,7 +2310,7 @@
           },
           "BootstrapVersion": {
             "id": "BootstrapVersion",
-            "path": "reidar-sst-sharp-build-failure-Site/BootstrapVersion",
+            "path": "prod-sst-sharp-build-failure-Site/BootstrapVersion",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnParameter",
               "version": "2.72.1"
@@ -429,7 +2318,7 @@
           },
           "CheckBootstrapVersion": {
             "id": "CheckBootstrapVersion",
-            "path": "reidar-sst-sharp-build-failure-Site/CheckBootstrapVersion",
+            "path": "prod-sst-sharp-build-failure-Site/CheckBootstrapVersion",
             "constructInfo": {
               "fqn": "aws-cdk-lib.CfnRule",
               "version": "2.72.1"
