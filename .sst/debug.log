@@ -1,0 +1,15 @@
+2023-04-21T20:16:33.218Z  +1918ms [debug] Config loaded {"version":"2.5.7","cdkVersion":"2.72.1","constructsVersion":"10.1.156","config":{"name":"sst-sharp-build-failure","region":"us-east-1","stage":"reidar","ssmPrefix":"/sst/sst-sharp-build-failure/reidar/"},"metafile":{"inputs":{"sst.config.ts":{"bytes":412,"imports":[{"path":"sst","kind":"import-statement","external":true},{"path":"sst/constructs","kind":"import-statement","external":true},{"path":"<runtime>","kind":"import-statement","external":true}]}},"outputs":{".sst.config.1682108191584.mjs":{"imports":[{"path":"sst/constructs","kind":"import-statement","external":true}],"exports":["default"],"entryPoint":"sst.config.ts","inputs":{"sst.config.ts":{"bytesInOutput":396}},"bytes":1898}}},"paths":{"config":"/home/reidar/repos/sst-sharp-build-failure/sst.config.ts","root":"/home/reidar/repos/sst-sharp-build-failure","out":"/home/reidar/repos/sst-sharp-build-failure/.sst","artifacts":"/home/reidar/repos/sst-sharp-build-failure/.sst/artifacts"}}
+2023-04-21T20:16:33.333Z   +115ms [debug] Using AWS profile 
+2023-04-21T20:16:33.351Z    +18ms [debug] Created AWS client IoTClient
+2023-04-21T20:16:33.351Z     +0ms [debug] Getting IoT endpoint
+2023-04-21T20:16:33.903Z   +552ms [debug] Using IoT endpoint: a3a9rc8jws7a5v-ats.iot.us-east-1.amazonaws.com
+2023-04-21T20:16:33.903Z     +0ms [debug] Initializing bootstrap context
+2023-04-21T20:16:33.904Z     +1ms [debug] Created AWS client CloudFormationClient
+2023-04-21T20:16:34.525Z   +621ms [debug] Loaded bootstrap status
+2023-04-21T20:16:34.525Z     +0ms [debug] Bootstrap context initialized {"version":"7","bucket":"sstbootstrap-useast124d14e4b-1g9qmvqjom02x"}
+2023-04-21T20:16:34.526Z     +1ms [debug] Created AWS client S3Client
+2023-04-21T20:16:34.567Z    +41ms [debug] Fetching all metadata
+2023-04-21T20:16:35.266Z   +699ms [debug] IoT connected
+2023-04-21T20:16:35.350Z    +84ms [debug] Fetched metadata from 1 stacks
+2023-04-21T20:16:35.352Z     +2ms [debug] Created AWS client LambdaClient
+2023-04-21T20:16:35.976Z   +624ms [debug] Created AWS client STSClient
